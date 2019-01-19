@@ -1,0 +1,293 @@
+/* TODO: Add color vars */
+:root {
+  --primary-color: white;
+  --secondary-color: black;
+  --contrast-color: #969696;
+  --complementary-color: #ababab;
+  --background-color: #eee;
+  --secondary-background-color: #eee;
+  --primary-font-family: "Josefin Slab", serif;
+  --secondary-font-family: "Fredericka the Great", cursive;
+}
+
+html,
+body {
+  padding: 0 1em;
+  background: var(--background-color);
+  font-size: 3vmin;
+}
+
+@media (max-aspect-ratio: 4/3) {
+  font-size: 2vw;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+  text-align: center;
+}
+
+h1,
+h2 {
+  font-weight: 400;
+  font-family: var(--secondary-font-family);
+}
+
+h1 {
+  border: 18px ridge var(--primary-color);
+  box-shadow: inset 0px 3px 19px 0px var(--secondary-color);
+  margin: 10vh auto 5vh auto;
+  width: 60vw;
+  padding: 0.2em;
+  background: rgba(255, 255, 255, 0.85);
+  filter: sepia(15%);
+}
+
+h3,
+h4,
+span {
+  font-family: var(--primary-font-family);
+}
+
+h3 {
+  color: rgba(0, 0, 0, 0.5);
+  border-bottom: 5px ridge var(--primary-color);
+  box-shadow: 0px 6px 7px -6px var(--secondary-color);
+  margin: 1em auto;
+}
+
+h3.s,
+h3.xs {
+  font-size: 0.7em;
+  width: 15vw;
+}
+
+h3.m {
+  font-size: 0.8em;
+  width: 20vw;
+}
+
+h3.l {
+  font-size: 0.9em;
+  width: 25vw;
+}
+
+.xs {
+  font-size: 0.55em;
+}
+
+.s {
+  font-size: 0.6em;
+}
+
+.m {
+  font-size: 0.7em;
+}
+
+.l {
+  font-size: 0.8em;
+}
+
+img.xs {
+  width: 14em;
+}
+
+img.s {
+  width: 15em;
+}
+
+img.m {
+  width: 16em;
+}
+
+img.l {
+  width: 18em;
+}
+
+p,
+li {
+  font-family: var(--primary-font-family);
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  line-height: 2;
+  text-decoration: none;
+}
+
+a b {
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 0.75em;
+  font-weight: bolder;
+}
+
+p {
+  margin: 0 auto;
+  width: 80vw;
+  text-align: center;
+}
+
+span {
+  font-family: var(--secondary-font-family);
+}
+
+header {
+  width: 100%;
+}
+
+picture img {
+  border-radius: 2px;
+}
+
+.frame {
+  box-shadow: 1px 1px 10px 1px var(--secondary-color);
+  border: 0.5em solid var(--primary-color);
+}
+
+.black-frame {
+  outline: 0.25em solid var(--secondary-color);
+  border: 0.25em solid var(--primary-color);
+}
+
+nav {
+  display: flex;
+  flex-direction: row-reverse;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  background: var(--secondary-background-color);
+  box-shadow: 0px 2px 20px 2px var(--secondary-color);
+  padding: 0.5em;
+  z-index: 999;
+}
+
+nav i {
+  margin-right: 1em;
+  padding: 0.5em;
+  border: 1px solid var(--complementary-color);
+  border-radius: 100px;
+  box-shadow: 0 1px 2px 0px var(--contrast-color);
+  background: none;
+  cursor: pointer;
+}
+
+nav i:hover {
+  box-shadow: 0 0 9px 0px var(--contrast-color);
+}
+
+nav i:active {
+  box-shadow: 0 0 5px 0px var(--contrast-color);
+}
+
+nav span {
+  position: absolute;
+  font-size: 0.5em;
+  box-shadow: 0px 0px 4px 0px var(--secondary-color);
+  padding: 0.3em 0.5em;
+  height: 1.75em;
+  width: 1.75em;
+  background: var(--primary-color);
+  border-radius: 100px;
+  margin-left: 2em;
+  margin-top: -0.5em;
+}
+
+.cart-item {
+  font-size: 0.65em;
+  white-space: nowrap;
+}
+
+nav span.cart-icon {
+  font-size: 0.6em;
+  box-shadow: none;
+  padding: unset;
+  height: 1.5em;
+  width: 1.5em;
+  background: none;
+  border: none;
+  margin: auto;
+}
+
+nav .cart-icon i {
+  margin: auto;
+  border: none;
+  box-shadow: none;
+}
+
+.nav-item-container {
+  display: flex;
+}
+
+.box {
+  font-family: var(--primary-font-family);
+  opacity: 0.85;
+  position: absolute;
+  width: 18vw;
+  margin-top: 1em;
+  right: 1em;
+  border: 2px solid var(--secondary-color);
+  border-radius: 2px;
+  background: var(--primary-color);
+  padding: 0.5em 1em 0.5em 1em;
+  z-index: 1;
+}
+
+.credits {
+  font-size: 0.75em;
+  margin-right: 2em;
+  z-index: 2;
+}
+
+.meta {
+  margin-top: 0.5em;
+  display: flex;
+  justify-content: space-around;
+}
+
+.meta span {
+  font-weight: 100;
+}
+
+.buy {
+  color: #3c923c;
+  cursor: pointer;
+}
+
+.buy:hover {
+  color: rgb(0, 209, 0);
+}
+
+.empty {
+  white-space: nowrap;
+  font-size: 0.75em;
+}
+
+.photo-grid {
+  display: grid;
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: start;
+}
+
+@media (max-aspect-ratio: 4/3) {
+  .photo-grid {
+    grid-template-columns: repeat(auto-fill, minmax(16em, 1fr));
+  }
+}
+
+@media (min-width: 1250px) {
+  .photo-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

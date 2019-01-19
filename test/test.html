@@ -1,0 +1,39 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+    <style>
+        div[id^='test'] {
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mocha"></div>
+    <div id="test-credits"></div>
+    <div id="test-nav"></div>
+    <div id="test-empty-nav"></div>
+    <div id="test-cart"></div>
+    <div id="test-pic"></div>
+    <div id="test-pics"></div>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script>mocha.setup('bdd')</script>
+    <script src="./dom/test.credits.ts"></script>
+    <script src="./dom/test.nav.ts"></script>
+    <script src="./dom/test.cart.ts"></script>
+    <script src="./dom/test.pic.ts"></script>
+    <script src="./dom/test.pics.ts"></script>
+    <script>
+        mocha.checkLeaks();
+        mocha.run();
+    </script>
+</body>
+
+</html>
