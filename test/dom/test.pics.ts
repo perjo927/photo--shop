@@ -24,7 +24,7 @@ const picsElement = document.getElementById("pics");
 
 describe("Test pic", () => {
   describe("Rendered component", () => {
-    it("Created a pic selement", () => {
+    it("Created a pic element", () => {
       console.assert("pics" === picsElement.id);
     });
   });

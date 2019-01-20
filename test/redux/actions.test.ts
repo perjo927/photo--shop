@@ -118,4 +118,20 @@ describe("actions", () => {
       expect(actions.toggleCreditsOpen()).toEqual(expectedAction);
     });
   });
+
+  describe("modal", () => {
+    it("should create an action to toggle modal", () => {
+      const expectedAction = {
+        type: actions.TOGGLE_MODAL
+      };
+      expect(actions.toggleModalOpen()).toEqual(expectedAction);
+    });
+    it("should create an action to toggle modal", () => {
+      const expectedAction = {
+        type: actions.SET_MODAL_MESSAGE,
+        message: "foo"
+      };
+      expect(actions.setModalMessage("foo")).toEqual(expectedAction);
+    });
+  });
 });

@@ -1,6 +1,6 @@
 import { IPic } from "../../src/entities/pic.interface";
 import * as actions from "../../src/redux/actions";
-import { cart, money, nav, pics } from "../../src/redux/reducers";
+import { cart, modal, money, nav, pics } from "../../src/redux/reducers";
 
 describe("cart reducer", () => {
   const pic: IPic = {
@@ -197,5 +197,49 @@ describe("pics reducer", () => {
       },
       pic2
     ]);
+  });
+});
+
+describe("modal reducer", () => {
+  it("should return the initial state", () => {
+    expect(modal(undefined, {})).toEqual({
+      isModalOpen: false,
+      message: ""
+    });
+  });
+
+  it("should handle TOGGLE_MODAL", () => {
+    expect(
+      modal(
+        {
+          isModalOpen: false,
+          message: ""
+        },
+        {
+          type: actions.TOGGLE_MODAL
+        }
+      )
+    ).toEqual({
+      isModalOpen: true,
+      message: ""
+    });
+  });
+
+  it("should handle SET_MODAL_MESSAGE", () => {
+    expect(
+      modal(
+        {
+          isCartOpen: false,
+          message: ""
+        },
+        {
+          type: actions.SET_MODAL_MESSAGE,
+          message: "foo"
+        }
+      )
+    ).toEqual({
+      isCartOpen: false,
+      message: "foo"
+    });
   });
 });

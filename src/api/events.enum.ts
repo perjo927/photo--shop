@@ -1,5 +1,6 @@
 export enum Events {
   AddToCart = "ADD_TO_CART",
+  CloseModal = "CLOSE_MODAL",
   RemoveFromCart = "REMOVE_FROM_CART",
   ToggleCart = "TOGGLE_CART",
   ToggleCredits = "TOGGLE_CREDITS",

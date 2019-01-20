@@ -9,10 +9,11 @@ const AppElement = () => {
         <h1>
             Per's Photo-Shop
         </h1>
+        <section id="modal"></section>
         <section>
             <p>
                 Select x number of photos of your liking, by clicking "Buy", until you reach your quota.
-                Then click the shopping cart and send your order. Delivered upon our next physical meeting.
+                Then click the shopping cart and send your order. 
             </p>
             <ul>
                 <li>
