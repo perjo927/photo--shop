@@ -4,5 +4,5 @@ export interface IShopState {
   cart: IPic[];
   money: number;
   pics: IPic[];
-  modal: any;
+  prompt: any;
 }

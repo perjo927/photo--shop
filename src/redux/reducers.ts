@@ -59,14 +59,14 @@ export const nav = (
   }
 };
 
-export const modal = (
-  state: any = { isModalOpen: false, message: "" },
+export const prompt = (
+  state: any = { isPromptOpen: false, message: "" },
   action: any
 ): any => {
   switch (action.type) {
-    case actions.TOGGLE_MODAL:
-      return { ...state, isModalOpen: !state.isModalOpen };
-    case actions.SET_MODAL_MESSAGE:
+    case actions.TOGGLE_PROMPT:
+      return { ...state, isPromptOpen: !state.isPromptOpen };
+    case actions.SET_PROMPT_MESSAGE:
       return { ...state, message: action.message };
     default:
       return state;
@@ -78,5 +78,5 @@ export const shopApp = combineReducers({
   money,
   pics,
   nav,
-  modal
+  prompt
 });
