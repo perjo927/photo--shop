@@ -1,23 +1,57 @@
 import { IPic } from "../entities/pic.interface";
-import data from "../server/data/data";
+import { getData } from "../graphql/index";
+
+const queryPics = `{ 
+  pics {
+    id
+    title
+    size
+    path
+    type
+    material
+    measure
+    price
+    link
+  }
+}`;
 
 class PicService {
-  private picData: any;
-
-  constructor(picData: any) {
-    this.picData = data;
+  public getPic(id: string): IPic {
+    return getData(this.queryPic(id)).then(
+      (response: any): void => {
+        return response;
+      }
+    );
   }
 
   public getPics(): IPic[] {
-    const { pics } = this.picData;
-    pics.map(
-      (pic: IPic): IPic => {
-        pic.visible = true;
-        return pic;
+    return getData(queryPics).then(
+      (response: any): void => {
+        const { pics } = response.data;
+        const result = pics.map(
+          (pic: IPic): IPic => {
+            pic.visible = true;
+            return pic;
+          }
+        );
+        return result;
       }
     );
-    return pics;
   }
+
+  private queryPic = (id: string) => `{ 
+    picture(id: "${id}") {
+      id
+      title
+      size
+      path
+      type
+      material
+      measure
+      price
+      link
+    }
+  }`;
 }
 
-export const picService = new PicService(data);
+export const picService = new PicService();

@@ -7,7 +7,11 @@ declare const window: any;
 const shopState: IShopState = {
   cart: [],
   money: 3,
-  pics: []
+  pics: [],
+  modal: {
+    isModalOpen: false,
+    message: ""
+  }
 };
 
 export class Store {
@@ -24,11 +28,14 @@ export class Store {
     console.debug(this._store.getState());
   }
 
-  get unsubscribe() {
-    return this._store.subscribe(() => console.debug(store.state));
+  public unsubscribe(func: any): any {
+    return this._store.subscribe(() => {
+      console.debug(store.state);
+      func();
+    });
   }
 
-  get state() {
+  get state(): any {
     return this._store.getState();
   }
 
@@ -37,7 +44,7 @@ export class Store {
     return state[property];
   }
 
-  public dispatch(action: any) {
+  public dispatch(action: any): void {
     this._store.dispatch(action);
   }
 }

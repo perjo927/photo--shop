@@ -4,11 +4,11 @@ A hyperHtml based e-shop.
 
 ## Build Status
 
-[![Build Status](https://travis-ci.com/perjo927/photo-shop.svg?branch=master)](https://travis-ci.com/perjo927/photo-shop)
+[![Build Status](https://travis-ci.com/perjo927/photo--shop.svg?branch=master)](https://travis-ci.com/perjo927/photo--shop)
 
 ## Demo
 
-[Link](https://photo-shop.netlify.com/)
+[Link](https://photoshop.netlify.com/)
 
 ## Build
 

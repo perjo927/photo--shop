@@ -143,6 +143,43 @@ header {
   width: 100%;
 }
 
+@keyframes slidein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-wrapper {
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.modal {
+  animation-duration: 0.3s;
+  animation-name: slidein;
+  position: fixed;
+  top: 30vh;
+  left: 20vw;
+  background: white;
+  border: 0.1em solid black;
+  z-index: 0;
+  height: 50vh;
+  width: 60vw;
+}
+
+.message {
+  padding: 2em;
+  font-family: var(--primary-font-family);
+}
+
 picture img {
   border-radius: 2px;
 }

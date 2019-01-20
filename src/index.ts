@@ -1,6 +1,7 @@
 import hyperHTML from "hyperhtml";
 
 import AppElement from "./components/app.element";
+import ModalElement from "./components/modal.element";
 import NavElement from "./components/nav.element";
 import PicsElement from "./components/pics.element";
 
@@ -53,8 +54,17 @@ const renderPics = (): void => {
 `;
 };
 
+const renderModal = (message: string): void => {
+  const { onCloseModalRequest } = api;
+  api.toggleModal();
+  const modal = store.getFromState("modal");
+  const { isModalOpen } = modal;
+  const props = { message, isModalOpen, onCloseModalRequest };
+  bind(document.querySelector("section#modal"))`${ModalElement(props)}`;
+};
+
 /* INIT APP */
-const init = (): void => {
+const init = async (): Promise<void> => {
   emitter.on(
     Events.ToggleCart,
     (arg: any): void => {
@@ -79,7 +89,7 @@ const init = (): void => {
 
   emitter.on(
     Events.RemoveFromCart,
-    (id: number): void => {
+    (id: string): void => {
       renderNav();
       renderPics();
     }
@@ -87,22 +97,34 @@ const init = (): void => {
 
   emitter.on(
     Events.OutOfFunds,
-    (): void => {
-      alert("Out of money! Empty shopping cart please.");
+    (arg: any): void => {
+      renderModal("Out of money! Empty shopping cart please.");
+    }
+  );
+
+  emitter.on(
+    Events.CloseModal,
+    (arg: any): void => {
+      renderModal("");
     }
   );
 
   emitter.on(
     Events.OrderInfo,
     (info: string): void => {
-      alert(`You have purchased ${info}!`);
+      renderModal(`You have purchased ${info}!`);
       unsubscribe();
-      window.location.reload(false);
+      // TODO: Reset state  instead
+      setTimeout(() => {
+        window.location.reload(false);
+      }, 1500);
     }
   );
 
-  unsubscribe = store.unsubscribe;
-  api.addPics();
+  unsubscribe = store.unsubscribe(() => {
+    // TODO: Re-render here
+  });
+  await api.addPics();
   renderApp();
   renderNav();
   renderPics();
