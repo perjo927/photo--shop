@@ -14,8 +14,8 @@ export const SUBTRACT_MONEY = "SUBTRACT_MONEY";
 export const TOGGLE_CART = "TOGGLE_CART";
 export const TOGGLE_CREDITS = "TOGGLE_CREDITS";
 
-export const TOGGLE_MODAL = "TOGGLE_MODAL";
-export const SET_MODAL_MESSAGE = "SET_MODAL_MESSAGE";
+export const TOGGLE_PROMPT = "TOGGLE_PROMPT";
+export const SET_PROMPT_MESSAGE = "SET_PROMPT_MESSAGE";
 
 export const addToCart = (item: IPic) => {
   return { type: ADD_TO_CART, item };
@@ -53,10 +53,10 @@ export const toggleCreditsOpen = () => {
   return { type: TOGGLE_CREDITS };
 };
 
-export const toggleModalOpen = () => {
-  return { type: TOGGLE_MODAL };
+export const togglePromptOpen = () => {
+  return { type: TOGGLE_PROMPT };
 };
 
-export const setModalMessage = (message: string) => {
-  return { type: SET_MODAL_MESSAGE, message };
+export const setPromptMessage = (message: string) => {
+  return { type: SET_PROMPT_MESSAGE, message };
 };

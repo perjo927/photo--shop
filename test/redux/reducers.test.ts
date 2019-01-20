@@ -1,6 +1,6 @@
 import { IPic } from "../../src/entities/pic.interface";
 import * as actions from "../../src/redux/actions";
-import { cart, modal, money, nav, pics } from "../../src/redux/reducers";
+import { cart, prompt, money, nav, pics } from "../../src/redux/reducers";
 
 describe("cart reducer", () => {
   const pic: IPic = {
@@ -200,40 +200,40 @@ describe("pics reducer", () => {
   });
 });
 
-describe("modal reducer", () => {
+describe("prompt reducer", () => {
   it("should return the initial state", () => {
-    expect(modal(undefined, {})).toEqual({
-      isModalOpen: false,
+    expect(prompt(undefined, {})).toEqual({
+      isPromptOpen: false,
       message: ""
     });
   });
 
-  it("should handle TOGGLE_MODAL", () => {
+  it("should handle TOGGLE_PROMPT", () => {
     expect(
-      modal(
+      prompt(
         {
-          isModalOpen: false,
+          isPromptOpen: false,
           message: ""
         },
         {
-          type: actions.TOGGLE_MODAL
+          type: actions.TOGGLE_PROMPT
         }
       )
     ).toEqual({
-      isModalOpen: true,
+      isPromptOpen: true,
       message: ""
     });
   });
 
-  it("should handle SET_MODAL_MESSAGE", () => {
+  it("should handle SET_PROMPT_MESSAGE", () => {
     expect(
-      modal(
+      prompt(
         {
           isCartOpen: false,
           message: ""
         },
         {
-          type: actions.SET_MODAL_MESSAGE,
+          type: actions.SET_PROMPT_MESSAGE,
           message: "foo"
         }
       )

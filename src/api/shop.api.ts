@@ -1,10 +1,10 @@
-import { IPic } from "../entities/pic.interface";
-import { picService } from "../services/pic.service";
-
 import { emitter } from "../emitter/emitter";
+import { IPic } from "../entities/pic.interface";
 import * as actions from "../redux/actions";
 import { store } from "../redux/index";
+import { picService } from "../services/pic.service";
 import { Events } from "./events.enum";
+import { Messages } from "./messages.enum";
 
 /* HELPERS */
 export const togglePic = (id: any): void => {
@@ -19,28 +19,28 @@ export const addPics = async (): Promise<void> => {
 export const addToCart = (item: IPic) => {
   store.dispatch(actions.addToCart(item));
   store.dispatch(actions.subtractMoney(item.price));
-  emitter.emit(Events.AddToCart, item.id);
 };
 
 export const removeFromCart = (id: string, price: number): void => {
   store.dispatch(actions.removeFromCart(id));
   store.dispatch(actions.addMoney(price));
-  emitter.emit(Events.RemoveFromCart, id);
 };
 
-export const toggleModal = (): void => {
-  return store.dispatch(actions.toggleModalOpen());
+export const togglePrompt = (): void => {
+  return store.dispatch(actions.togglePromptOpen());
+};
+
+export const setPromptMessage = (message: string): void => {
+  return store.dispatch(actions.setPromptMessage(message));
 };
 
 /* REQUEST HANDLERS */
 export const onToggleCartRequest = () => {
   store.dispatch(actions.toggleCartOpen());
-  emitter.emit(Events.ToggleCart, 0);
 };
 
 export const onToggleCreditsRequest = () => {
   store.dispatch(actions.toggleCreditsOpen());
-  emitter.emit(Events.ToggleCredits, 0);
 };
 
 export const onBuyRequest = (element: any) => {
@@ -54,7 +54,8 @@ export const onBuyRequest = (element: any) => {
     togglePic(item.id);
     addToCart(item);
   } else {
-    emitter.emit(Events.OutOfFunds, id);
+    setPromptMessage(Messages.OutOfFunds);
+    togglePrompt();
   }
 };
 
@@ -76,9 +77,11 @@ export const onOrderRequest = (): void => {
   const info = cart
     .map((item: IPic) => `${item.title} ${item.measure}`)
     .join(", ");
+  setPromptMessage(`${Messages.OrderInfo} ${info}`);
+  togglePrompt();
   emitter.emit(Events.OrderInfo, info);
 };
 
-export const onCloseModalRequest = (): void => {
-  emitter.emit(Events.CloseModal, 0);
+export const onClosePromptRequest = (): void => {
+  togglePrompt();
 };

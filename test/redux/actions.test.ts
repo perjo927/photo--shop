@@ -119,19 +119,19 @@ describe("actions", () => {
     });
   });
 
-  describe("modal", () => {
-    it("should create an action to toggle modal", () => {
+  describe("prompt", () => {
+    it("should create an action to toggle prompt", () => {
       const expectedAction = {
-        type: actions.TOGGLE_MODAL
+        type: actions.TOGGLE_PROMPT
       };
-      expect(actions.toggleModalOpen()).toEqual(expectedAction);
+      expect(actions.togglePromptOpen()).toEqual(expectedAction);
     });
-    it("should create an action to toggle modal", () => {
+    it("should create an action to toggle prompt", () => {
       const expectedAction = {
-        type: actions.SET_MODAL_MESSAGE,
+        type: actions.SET_PROMPT_MESSAGE,
         message: "foo"
       };
-      expect(actions.setModalMessage("foo")).toEqual(expectedAction);
+      expect(actions.setPromptMessage("foo")).toEqual(expectedAction);
     });
   });
 });

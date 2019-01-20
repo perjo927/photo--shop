@@ -8,8 +8,8 @@ const shopState: IShopState = {
   cart: [],
   money: 3,
   pics: [],
-  modal: {
-    isModalOpen: false,
+  prompt: {
+    isPromptOpen: false,
     message: ""
   }
 };
