@@ -1,11 +1,9 @@
 import { IPic } from "../entities/pic.interface";
 import { picService } from "../services/pic.service";
 
+import { emitter } from "../emitter/emitter";
 import * as actions from "../redux/actions";
 import { store } from "../redux/index";
-
-import { emitter } from "../emitter/emitter";
-
 import { Events } from "./events.enum";
 
 /* HELPERS */
@@ -13,8 +11,9 @@ export const togglePic = (id: any): void => {
   store.dispatch(actions.togglePicVisibility(id));
 };
 
-export const addPics = (): void => {
-  store.dispatch(actions.addPics(picService.getPics()));
+export const addPics = async (): Promise<void> => {
+  const pics = await picService.getPics();
+  store.dispatch(actions.addPics(pics));
 };
 
 export const addToCart = (item: IPic) => {
@@ -27,6 +26,10 @@ export const removeFromCart = (id: string, price: number): void => {
   store.dispatch(actions.removeFromCart(id));
   store.dispatch(actions.addMoney(price));
   emitter.emit(Events.RemoveFromCart, id);
+};
+
+export const toggleModal = (): void => {
+  return store.dispatch(actions.toggleModalOpen());
 };
 
 /* REQUEST HANDLERS */
@@ -48,8 +51,8 @@ export const onBuyRequest = (element: any) => {
   const money = store.getFromState("money");
 
   if (money - price >= 0) {
-    addToCart(item);
     togglePic(item.id);
+    addToCart(item);
   } else {
     emitter.emit(Events.OutOfFunds, id);
   }
@@ -74,4 +77,8 @@ export const onOrderRequest = (): void => {
     .map((item: IPic) => `${item.title} ${item.measure}`)
     .join(", ");
   emitter.emit(Events.OrderInfo, info);
+};
+
+export const onCloseModalRequest = (): void => {
+  emitter.emit(Events.CloseModal, 0);
 };
