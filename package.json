@@ -1,6 +1,6 @@
 {
   "name": "photo-shop",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "description": "A simple shop",
   "main": "index.js",
   "scripts": {
