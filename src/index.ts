@@ -1,11 +1,13 @@
 import hyperHTML from "hyperhtml";
-
 import { Events } from "./api/events.enum";
 import * as api from "./api/shop.api";
 import AppElement from "./components/app.element";
 import ModalElement from "./components/modal.element";
+import * as modal from "./components/modal.props";
 import NavElement from "./components/nav.element";
+import * as nav from "./components/nav.props";
 import PicsElement from "./components/pics.element";
+import * as pics from "./components/pics.props";
 import { emitter } from "./emitter/emitter";
 import { store } from "./redux/index";
 
@@ -18,48 +20,21 @@ const renderApp = (): void => {
 };
 
 const renderNav = (): void => {
-  const shoppingCart = store.getFromState("cart");
-  const money = store.getFromState("money");
-  const nav = store.getFromState("nav");
-  const { isCartOpen, isCreditsOpen } = nav;
-  const {
-    onToggleCartRequest,
-    onToggleCreditsRequest,
-    onOrderRequest,
-    onRemoveFromCartRequest
-  } = api;
-
-  const props = {
-    onToggleCartRequest,
-    onToggleCreditsRequest,
-    isCartOpen,
-    isCreditsOpen,
-    shoppingCart,
-    onOrderRequest,
-    onRemoveFromCartRequest,
-    money
-  };
-
+  const props = nav.mapProps(store, api);
   bind(document.querySelector("nav"))`
     ${NavElement(props)}
   `;
 };
 
 const renderPics = (): void => {
-  const pics = store.getFromState("pics");
-  const { onBuyRequest } = api;
-
+  const props = pics.mapProps(store, api);
   bind(document.querySelector("main"))`
-  ${PicsElement({ pics, onBuyRequest })}
-`;
+    ${PicsElement(props)}
+  `;
 };
 
 const renderModal = (): void => {
-  const { onClosePromptRequest } = api;
-  const prompt = store.getFromState("prompt");
-  const { isPromptOpen, message } = prompt;
-  const props = { message, isPromptOpen, onClosePromptRequest };
-
+  const props = modal.mapProps(store, api);
   bind(document.querySelector("section#modal"))`${ModalElement(props)}`;
 };
 
